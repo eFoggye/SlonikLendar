@@ -5,13 +5,17 @@
 //  Created by Egor on 06.01.2026.
 //
 
-import Testing
-@testable import EasyLendar
+import XCTest
+@testable import SlonikLendar
 
-struct EasyLendarTests {
-
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+class EasyLendarTests: XCTestCase {
+    override func setUpWithError() throws {
+        <#code#>
     }
-
+    override func tearDownWithError() throws {
+        <#code#>
+    }
+    func check() {
+        
+    }
 }

@@ -45,6 +45,14 @@
 			);
 			target = DCE9BA5E2F0C55F10077125B /* SlonikLendar */;
 		};
+		DC9586302F1E7C8D00ADC706 /* Exceptions for "EasyLendarTests" folder in "SlonikLendar" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Mocks/MockCoreDataManager.swift,
+				Tests/CustomError.swift,
+			);
+			target = DCE9BA5E2F0C55F10077125B /* SlonikLendar */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -59,6 +67,9 @@
 		};
 		DCE9BA782F0C55F30077125B /* EasyLendarTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DC9586302F1E7C8D00ADC706 /* Exceptions for "EasyLendarTests" folder in "SlonikLendar" target */,
+			);
 			path = EasyLendarTests;
 			sourceTree = "<group>";
 		};
@@ -472,6 +483,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8A5NUF2NUK;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				MARKETING_VERSION = 1.0;
@@ -480,7 +492,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EasyLendar.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EasyLendar";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SlonikLendar.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SlonikLendar";
 			};
 			name = Debug;
 		};
@@ -490,6 +502,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8A5NUF2NUK;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				MARKETING_VERSION = 1.0;
@@ -498,7 +511,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EasyLendar.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EasyLendar";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SlonikLendar.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SlonikLendar";
 			};
 			name = Release;
 		};
@@ -507,6 +520,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8A5NUF2NUK;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = f0ggy.EasyLendarUITests;
@@ -523,6 +537,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8A5NUF2NUK;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = f0ggy.EasyLendarUITests;

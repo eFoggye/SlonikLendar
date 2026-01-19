@@ -1,6 +1,6 @@
 import Foundation
 
-protocol DayEventsViewModelProtocol {
+protocol DayTimelineViewModelProtocol {
     var events: [Event] { get }
     var onUpdate: (() -> Void)? { get set }
     func load()
@@ -9,7 +9,7 @@ protocol DayEventsViewModelProtocol {
     func height(event: Event) -> CGFloat
 }
 
-final class DayEventsViewModel: DayEventsViewModelProtocol {
+final class DayTimelineViewModel: DayTimelineViewModelProtocol {
     let coreDataManager: CoreDataManagerProtocol
     
     private var day: DayModel = DayModel(date: Date(), day: 0, isToday: false, isCurrentMonth: false, isItInThismonth: false)
@@ -20,9 +20,6 @@ final class DayEventsViewModel: DayEventsViewModelProtocol {
     init(day: DayModel, coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
         self.day = day
         self.coreDataManager = coreDataManager
-    }
-    convenience init() {
-        self.init(day: DayModel(date: Date(), day: 0, isToday: false, isCurrentMonth: false, isItInThismonth: false))
     }
     
     func load() {

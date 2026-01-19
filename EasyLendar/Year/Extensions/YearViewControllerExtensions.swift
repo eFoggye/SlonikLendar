@@ -26,7 +26,7 @@ extension YearViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let day = months[indexPath.section].days[indexPath.item]
         guard day.isItInThismonth else {return}
-        let vc = DayEventsViewController(day: day)
+        let vc = DayTimelineViewController(day: day)
         navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -1,6 +1,6 @@
 import UIKit
 
-final class DayEventsViewController: UIViewController {
+final class DayTimelineViewController: UIViewController {
     //MARK: - Constants
     private struct Constants {
         static let hoursInDay: CGFloat = 24
@@ -19,7 +19,7 @@ final class DayEventsViewController: UIViewController {
     let contentView = UIView()
     var eventViews = [UIView]()
     //MARK: - Support
-    private var viewModel: DayEventsViewModelProtocol
+    private var viewModel: DayTimelineViewModelProtocol
     //MARK: - View did load
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +30,8 @@ final class DayEventsViewController: UIViewController {
         viewModel.load()
     }
     //MARK: - Init
-    init(day: DayModel, viewModel: DayEventsViewModelProtocol = DayEventsViewModel()) {
-        self.viewModel = viewModel
+    init(day: DayModel) {
+        self.viewModel = DayTimelineViewModel(day: day)
         super.init(nibName: nil, bundle: nil)
     }
     //MARK: - Create Views

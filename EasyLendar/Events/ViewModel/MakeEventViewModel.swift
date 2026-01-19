@@ -9,11 +9,11 @@ protocol MakeEventViewModelProtocol {
 }
 
 final class MakeEventViewModel: MakeEventViewModelProtocol {
-    private let coreDataManager: CoreDataManager
+    private let coreDataManager: CoreDataManagerProtocol
     private let notificationManager: NotificationManagerProtocol? = NotificationManager.shared
     
     init(coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
-        self.coreDataManager = coreDataManager as! CoreDataManager
+        self.coreDataManager = coreDataManager
     }
     
     func startDateTime(startDate: Date, startTime: Date) -> Date {

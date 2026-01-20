@@ -48,6 +48,8 @@
 		DC9586302F1E7C8D00ADC706 /* Exceptions for "EasyLendarTests" folder in "SlonikLendar" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Classes/CoreDataInMemoryPersistantContainer.swift,
+				Mocks/MockCalendarHelper.swift,
 				Mocks/MockCoreDataManager.swift,
 				Tests/CustomError.swift,
 			);

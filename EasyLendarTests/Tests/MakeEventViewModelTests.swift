@@ -1,10 +1,3 @@
-//
-//  MakeEventViewModelHelper.swift
-//  SLonikLendarTests
-//
-//  Created by Egor on 19.01.2026.
-//
-
 import XCTest
 @testable import SlonikLendar
 final class MakeEventViewModelTests: XCTestCase {

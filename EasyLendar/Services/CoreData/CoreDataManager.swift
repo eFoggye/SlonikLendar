@@ -14,15 +14,16 @@ final class CoreDataManager: CoreDataManagerProtocol {
         persistentContainer.viewContext
     }()
     
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "SlonikLendar")
-        container.loadPersistentStores { description, error in
+    private let persistentContainer: NSPersistentContainer
+    
+    init (container: NSPersistentContainer = NSPersistentContainer(name: "SlonikLendar")) {
+        self.persistentContainer = container
+        container.loadPersistentStores { _, error in
             if let error = error as? NSError {
                 fatalError("Unresolved error: \(error.userInfo)")
             }
         }
-        return container
-    }()
+    }
     
     private func saveContext() {
         let context = persistentContainer.viewContext

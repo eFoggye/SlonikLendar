@@ -1,10 +1,3 @@
-//
-//  DayTimelineViewModel.swift
-//  SLonikLendarTests
-//
-//  Created by Egor on 20.01.2026.
-//
-
 import XCTest
 @testable import SlonikLendar
 final class DayTimelineViewModelTests: XCTestCase {
@@ -121,7 +114,7 @@ final class DayTimelineViewModelTests: XCTestCase {
         let viewModel = DayTimelineViewModel(day: day, coreDataManager: mockCoreDataManager)
         let event1 = Event(id: UUID(), name: "I'm tired if advertising", startDate: date, endDate: endDate, isAllDay: false, notifications: false)
         let event2 = Event(id: UUID(), name: "Just load it", startDate: date, endDate: endDate, isAllDay: false, notifications: false)
-        mockCoreDataManager.fetchStubbedEvents = [event1, event2]
+        mockCoreDataManager.fetchForDateStubbedEvents = [event1, event2]
         let expectableResult = 2
         //When
         var onUpdateCalled = false
@@ -130,7 +123,7 @@ final class DayTimelineViewModelTests: XCTestCase {
         }
         viewModel.load()
         //Then
-        XCTAssertTrue(mockCoreDataManager.fetchCalled)
+        XCTAssertTrue(mockCoreDataManager.fetchForDateCalled)
         XCTAssertEqual(viewModel.events.count, expectableResult)
         XCTAssertEqual(viewModel.events[0].id, event1.id)
         XCTAssertEqual(viewModel.events[1].id, event2.id)
@@ -150,7 +143,7 @@ final class DayTimelineViewModelTests: XCTestCase {
         }
         viewModel.load()
         //Then
-        XCTAssertTrue(mockCoreDataManager.fetchCalled)
+        XCTAssertTrue(mockCoreDataManager.fetchForDateCalled)
         XCTAssertEqual(viewModel.events.count, expectedResult)
         XCTAssert(onUpdateCalled)
     }

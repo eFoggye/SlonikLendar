@@ -5,13 +5,15 @@ class MockCoreDataManager: CoreDataManagerProtocol {
     private(set) var createCalled = false
     private(set) var updateCalled = false
     private(set) var deleteCalled = false
-    private(set) var fetchCalled = false
+    private(set) var fetchForDateCalled = false
+    private(set) var fetchAllCalled = false
     
     private(set) var createEvent: Event?
     private(set) var updateEvent: Event?
     private(set) var deleteEvent: Event?
     
-    var fetchStubbedEvents: [Event] = []
+    var fetchForDateStubbedEvents: [Event] = []
+    var fetchAllStubbedEvents: [Event] = []
     
     func create(event: Event) {
         createCalled = true
@@ -19,12 +21,13 @@ class MockCoreDataManager: CoreDataManagerProtocol {
     }
     
     func fetchEvents() -> [Event] {
-        return []
+        fetchAllCalled = true
+        return fetchAllStubbedEvents
     }
     
     func fetchEvent(for date: Date) -> [Event] {
-        fetchCalled = true
-        return fetchStubbedEvents
+        fetchForDateCalled = true
+        return fetchForDateStubbedEvents
     }
     
     func update(event: Event) {

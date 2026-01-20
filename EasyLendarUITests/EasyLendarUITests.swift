@@ -23,19 +23,24 @@ final class EasyLendarUITests: XCTestCase {
     }
 
     @MainActor
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testSwipesWorkCorrect() throws {
+        let slonikLendarApp = XCUIApplication(bundleIdentifier: "f0ggy.SlonikLendar")
+        slonikLendarApp.activate()
+        let cellsQuery = slonikLendarApp.cells
+        cellsQuery/*@START_MENU_TOKEN@*/.containing(.staticText, identifier: "30").firstMatch/*[[".element(boundBy: 32)",".containing(.staticText, identifier: \"30\").firstMatch"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeLeft()
+        cellsQuery.element(boundBy: 37).swipeRight()
+        cellsQuery.element(boundBy: 38).swipeRight()
     }
-
-    @MainActor
-    func testLaunchPerformance() throws {
-        // This measures how long it takes to launch your application.
-        measure(metrics: [XCTApplicationLaunchMetric()]) {
-            XCUIApplication().launch()
-        }
+    func testDayCellPresentTimelineWhenTap() {
+        let slonikLendarApp = XCUIApplication(bundleIdentifier: "f0ggy.SlonikLendar")
+        slonikLendarApp.activate()
+        slonikLendarApp/*@START_MENU_TOKEN@*/.staticTexts["22"]/*[[".otherElements.staticTexts[\"22\"]",".staticTexts[\"22\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.firstMatch.tap()
+        
+    }
+    func testEventViewIsUserInteraction () throws {
+        let slonikLendarApp = XCUIApplication(bundleIdentifier: "f0ggy.SlonikLendar")
+        slonikLendarApp.activate()
+        slonikLendarApp/*@START_MENU_TOKEN@*/.staticTexts["22"]/*[[".otherElements.staticTexts[\"22\"]",".staticTexts[\"22\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.firstMatch.tap()
+        slonikLendarApp.scrollViews/*@START_MENU_TOKEN@*/.firstMatch/*[[".containing(.other, identifier: \"Horizontal scroll bar, 1 page\").firstMatch",".containing(.other, identifier: nil).firstMatch",".firstMatch"],[[[-1,2],[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
     }
 }

@@ -37,6 +37,7 @@ final class MakeEventViewController: UIViewController {
         static let placeholder = UIColor.systemGray
         static let picker = UIColor.systemGray
         static let toggle = UIColor.systemGray
+        static let countOfMinutes: Double = 60
     }
     //MARK: - UI Info Blocks
     private lazy var infoBlock = makeInfoBlockView()
@@ -197,25 +198,22 @@ final class MakeEventViewController: UIViewController {
         
         allDaySwitch.translatesAutoresizingMaskIntoConstraints = false
         
-        endDatePicker.minimumDate = startDatePicker.date
-        startDatePicker.minimumDate = Date.now
-        let isToday = Calendar.current.isDateInToday(startDatePicker.date)
-        if isToday {
-            startTimePicker.minimumDate = Calendar.current.date(
-                byAdding: .minute,
-                value: startTimePicker.minuteInterval,
-                to: Date()
-            )
-        } else {
-            startTimePicker.minimumDate = nil
-        }
-        endTimePicker.minimumDate = Calendar.current.date(
-            byAdding: .minute,
-            value: 5,
-            to: startTimePicker.date
-        )
-        startDatePicker.addTarget(self, action: #selector(startPickerValueChanged), for: .valueChanged)
-        startTimePicker.addTarget(self, action: #selector(startPickerValueChanged), for: .valueChanged)
+        let roundedNow = roundToNextFiveMinutes(date: Date())
+
+        startDatePicker.minimumDate = roundedNow
+        startDatePicker.setDate(roundedNow, animated: false)
+
+        startTimePicker.setDate(roundedNow, animated: false)
+
+        let end = defaultEndDate(start: roundedNow)
+        endDatePicker.setDate(end, animated: false)
+        endTimePicker.setDate(end, animated: false)
+
+        endTimePicker.minimumDate = Calendar.current.date(byAdding: .minute, value: 5, to: roundedNow)
+        endDatePicker.minimumDate = roundedNow
+        
+        startDatePicker.addTarget(self, action: #selector(startDatePickerValueChanged), for: .valueChanged)
+        startTimePicker.addTarget(self, action: #selector(startDatePickerValueChanged), for: .valueChanged)
         allDaySwitch.addTarget(self, action: #selector(allDaySwitchValueChanged), for: .valueChanged)
         
         container.addSubview(allDayLabel)
@@ -405,23 +403,31 @@ final class MakeEventViewController: UIViewController {
         notificationSwitch.isOn = event.notifications
     }
     //MARK: - Actions
-    @objc private func startPickerValueChanged() {
-        let calendar = Calendar.current
-        let startDateTime = viewModel.startDateTime(startDate: startDatePicker.date, startTime: startTimePicker.date)
-        let endDateTime = viewModel.endDateTime(endDate: endDatePicker.date, endTime: endTimePicker.date)
-        endDatePicker.minimumDate = startDatePicker.date
-        if endDateTime < startDateTime {
-            endTimePicker.setDate(
-                calendar.date(byAdding: .minute, value: 5, to: startDateTime)!,
-                animated: true
+    @objc func startDatePickerValueChanged() {
+        let start = roundToNextFiveMinutes(
+            date: viewModel.startDateTime(
+                    startDate: startDatePicker.date,
+                    startTime: startTimePicker.date
+                )
             )
-        }
-        
-        endTimePicker.minimumDate = calendar.date(
-            byAdding: .minute,
-            value: 5,
-            to: startDateTime
-        )
+
+            startDatePicker.setDate(start, animated: false)
+            startTimePicker.setDate(start, animated: false)
+
+            let minEnd = Calendar.current.date(byAdding: .minute, value: 5, to: start)!
+            endTimePicker.minimumDate = minEnd
+            endDatePicker.minimumDate = start
+
+            let currentEnd = viewModel.endDateTime(
+                endDate: endDatePicker.date,
+                endTime: endTimePicker.date
+            )
+
+            if currentEnd < minEnd {
+                let fixedEnd = defaultEndDate(start: start)
+                endDatePicker.setDate(fixedEnd, animated: true)
+                endTimePicker.setDate(fixedEnd, animated: true)
+            }
     }
     
     @objc private func allDaySwitchValueChanged() {
@@ -516,6 +522,30 @@ final class MakeEventViewController: UIViewController {
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    private func roundToNextFiveMinutes(date: Date) -> Date {
+        let calendar = Calendar.current
+        var components = calendar.dateComponents(
+            [.year, .month, .day, .hour, .minute],
+            from: date
+        )
+
+        guard let minute = components.minute else { return date }
+        let roundedMinute = ((minute + 4) / 5) * 5
+
+        if roundedMinute >= 60 {
+            components.hour = (components.hour ?? 0) + 1
+            components.minute = 0
+        } else {
+            components.minute = roundedMinute
+        }
+
+        components.second = 0
+        return calendar.date(from: components) ?? date
+    }
+
+    private func defaultEndDate(start: Date) -> Date {
+        Calendar.current.date(byAdding: .hour, value: 1, to: start) ?? start
     }
 }
 //MARK: - UI Text Field Delegate

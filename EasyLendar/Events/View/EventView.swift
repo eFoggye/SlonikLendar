@@ -19,6 +19,7 @@ final class EventView: UIView {
         nameLabel.textColor = .white
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.font = .boldSystemFont(ofSize: 25)
+        accessibilityIdentifier = event.name
         addSubview(nameLabel)
         isUserInteractionEnabled = true
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))

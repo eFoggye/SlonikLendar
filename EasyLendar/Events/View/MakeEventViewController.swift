@@ -104,6 +104,7 @@ final class MakeEventViewController: UIViewController {
         nameTextField.addTarget(self, action: #selector(nameTextFieldValueChanged), for: .editingChanged)
         nameTextField.returnKeyType = .continue
         nameTextField.delegate = self
+        nameTextField.accessibilityIdentifier = "nameTextField"
         
         descriptionTextField.borderStyle = .none
         descriptionTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -154,26 +155,6 @@ final class MakeEventViewController: UIViewController {
             descriptionTextField.heightAnchor.constraint(equalToConstant: 50),
             separator.heightAnchor.constraint(equalToConstant: 1)
         ])
-        return container
-    }
-    //MARK: - Notification Block
-    private func makeNotificationsBlock() -> UIView {
-        let container = createContainer()
-        
-        let notificationsLabel = createLabel(with: Constants.notificationLabel)
-        notificationsLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        container.addSubview(notificationsLabel)
-        container.addSubview(notificationSwitch)
-        
-        NSLayoutConstraint.activate([
-            notificationsLabel.centerYAnchor.constraint(equalTo: container.centerYAnchor),
-            notificationsLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: Constants.defaultHorizontalOffset),
-            
-            notificationSwitch.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -15),
-            notificationSwitch.centerYAnchor.constraint(equalTo: container.centerYAnchor),
-        ])
-        
         return container
     }
     //MARK: - Time interval block
@@ -257,6 +238,26 @@ final class MakeEventViewController: UIViewController {
             secondSeparator.leadingAnchor.constraint(equalTo: startLabel.leadingAnchor),
             secondSeparator.trailingAnchor.constraint(equalTo: endTimePicker.trailingAnchor)
         ])
+        return container
+    }
+    //MARK: - Notification Block
+    private func makeNotificationsBlock() -> UIView {
+        let container = createContainer()
+        
+        let notificationsLabel = createLabel(with: Constants.notificationLabel)
+        notificationsLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        container.addSubview(notificationsLabel)
+        container.addSubview(notificationSwitch)
+        
+        NSLayoutConstraint.activate([
+            notificationsLabel.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+            notificationsLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: Constants.defaultHorizontalOffset),
+            
+            notificationSwitch.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -15),
+            notificationSwitch.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+        ])
+        
         return container
     }
     //MARK: - Set Up Constraints
@@ -351,6 +352,7 @@ final class MakeEventViewController: UIViewController {
         deleteButton.setTitleColor(.systemRed, for: .normal)
         deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
+        deleteButton.accessibilityIdentifier = "deleteButton"
         view.addSubview(deleteButton)
         NSLayoutConstraint.activate([
             deleteButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -390,6 +392,7 @@ final class MakeEventViewController: UIViewController {
             target: self,
             action: #selector(rightBarButtonItemTapped)
         )
+        navigationItem.rightBarButtonItem?.accessibilityIdentifier = "saveButton"
         navigationItem.rightBarButtonItem?.isEnabled = false
     }
     

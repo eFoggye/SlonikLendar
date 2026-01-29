@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import SlonikLendar
 
 final class EasyLendarUITestsLaunchTests: XCTestCase {
 

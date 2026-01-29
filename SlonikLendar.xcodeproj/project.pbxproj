@@ -24,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DCDA0BD72F2A328000B7A3A9 /* SlonikLendar.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = SlonikLendar.xctestplan; sourceTree = "<group>"; };
 		DCE9BA5F2F0C55F10077125B /* SlonikLendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlonikLendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE9BA752F0C55F30077125B /* SLonikLendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SLonikLendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE9BA7F2F0C55F30077125B /* SlonikLendarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlonikLendarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +111,7 @@
 		DCE9BA562F0C55F10077125B = {
 			isa = PBXGroup;
 			children = (
+				DCDA0BD72F2A328000B7A3A9 /* SlonikLendar.xctestplan */,
 				DCE9BA612F0C55F10077125B /* EasyLendar */,
 				DCE9BA782F0C55F30077125B /* EasyLendarTests */,
 				DCE9BA822F0C55F30077125B /* EasyLendarUITests */,
@@ -530,7 +532,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = EasyLendar;
+				TEST_TARGET_NAME = SlonikLendar;
 			};
 			name = Debug;
 		};
@@ -547,7 +549,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = EasyLendar;
+				TEST_TARGET_NAME = SlonikLendar;
 			};
 			name = Release;
 		};

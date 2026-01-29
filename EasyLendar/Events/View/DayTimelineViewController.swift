@@ -20,6 +20,7 @@ final class DayTimelineViewController: UIViewController {
     var eventViews = [UIView]()
     //MARK: - Support
     private var viewModel: DayTimelineViewModelProtocol
+    private var yCoord: CGFloat = 0
     //MARK: - View did load
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,13 @@ final class DayTimelineViewController: UIViewController {
         setUpDayTimeline()
         bindViewModel()
         viewModel.load()
+    }
+    //MARK: - View Did Appear
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let maxOffset = scrollView.contentSize.height - scrollView.bounds.height
+        let targetOffset = min(max(yCoord - 100, 0), maxOffset)
+        scrollView.setContentOffset(CGPoint(x: 0, y: targetOffset), animated: true)
     }
     //MARK: - Init
     init(day: DayModel) {
@@ -72,6 +80,7 @@ final class DayTimelineViewController: UIViewController {
             hourLabel.text = hours[i]
             hourLabel.textColor = Constants.labelColor
             lineView.translatesAutoresizingMaskIntoConstraints = false
+            lineView.accessibilityIdentifier = "line"
             hourLabel.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(lineView)
             contentView.addSubview(hourLabel)
@@ -105,6 +114,7 @@ final class DayTimelineViewController: UIViewController {
             if !event.isAllDay {
                 let startY = viewModel.yPosition(date: event.startDate)
                 let height = viewModel.height(event: event)
+                yCoord = startY + height/2
                 NSLayoutConstraint.activate([
                     eventView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: startY),
                     eventView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),

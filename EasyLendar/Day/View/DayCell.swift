@@ -30,6 +30,7 @@ final class DayCell: UICollectionViewCell {
     }
     public func dayToDisplay(day: DayModel, hasEvents: Bool) {
         dayLabel.text = String(day.day)
+        dayLabel.accessibilityIdentifier = dayLabel.text
         if day.isCurrentMonth {
             dayLabel.textColor = .black
         } else {

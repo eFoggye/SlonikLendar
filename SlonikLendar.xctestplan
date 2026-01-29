@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "5DD831CA-A4D3-4B00-BADC-5045F5914940",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:SlonikLendar.xcodeproj",
+      "identifier" : "DCE9BA5E2F0C55F10077125B",
+      "name" : "SlonikLendar"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:SlonikLendar.xcodeproj",
+        "identifier" : "DCE9BA742F0C55F30077125B",
+        "name" : "SLonikLendarTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:SlonikLendar.xcodeproj",
+        "identifier" : "DCE9BA7E2F0C55F30077125B",
+        "name" : "SlonikLendarUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

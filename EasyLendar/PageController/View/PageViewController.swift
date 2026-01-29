@@ -30,9 +30,11 @@ final class PageViewController: UIPageViewController {
         label.font = UIFont.boldSystemFont(ofSize: 30)
         view.addSubview(label)
         let barbuttonitem = UIBarButtonItem(customView: view)
+        barbuttonitem.accessibilityIdentifier = "\(label.text ?? "")"
         navigationItem.leftBarButtonItem = barbuttonitem
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTaped))
+        navigationItem.rightBarButtonItem?.accessibilityIdentifier = "addEventButton"
     }
     //MARK: - Helpers
     func bindViewModel() {
